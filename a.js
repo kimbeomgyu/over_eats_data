@@ -1,6 +1,6 @@
 let puppeteer = require('puppeteer');
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://over:eats@54.180.102.251:27017/overEats', {
+mongoose.connect('mongodb://over:eats@13.125.190.232:27017/overEats', {
   useNewUrlParser: true
 });
 var db = mongoose.connection;
@@ -187,8 +187,8 @@ let area = [
   //'중랑구',
   //'성북구',
   //'강북구',
-  '도봉구',
-  '노원구',
+  //'도봉구',
+  //'노원구',
   '은평구',
   '서대문구',
   '마포구',
