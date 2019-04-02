@@ -178,15 +178,15 @@ let world = [
   '게요리'
 ];
 let area = [
-  '종로구',
-  '중구',
-  '용산구',
-  '성동구',
-  '광진구',
-  '동대문구',
-  '중랑구',
-  '성북구',
-  '강북구',
+  //'종로구',
+  //'중구',
+  //'용산구',
+  //'성동구',
+  //'광진구',
+  //'동대문구',
+  //'중랑구',
+  //'성북구',
+  //'강북구',
   '도봉구',
   '노원구',
   '은평구',
@@ -217,7 +217,7 @@ async function urlScrap(area) {
 
   let num = 0;
   console.log('area: ', area);
-  for (let j = 69; j <= 250; j++) {
+  for (let j = 1; j <= 50; j++) {
     console.log(j);
     try {
       await page.goto(
@@ -225,7 +225,8 @@ async function urlScrap(area) {
       );
       try {
         await page.waitFor('li.list_item');
-      } catch {
+      } catch(err) {
+	if(err)console.log(err)
         await page.goto(
           `https://store.naver.com/restaurants/list?filterId=r08&page=${j}&query=${area}%20%EB%A7%9B%EC%A7%91`
         );
@@ -253,7 +254,12 @@ async function urlScrap(area) {
   console.log('매무리');
   await browser.close();
 }
-urlScrap(area[0]);
+
+(async function() {
+  for (const value of area) {
+    await urlScrap(value);
+  }
+})();
 
 const restaurantScrap = async (url, address) => {
   let browser = await puppeteer.launch({
