@@ -189,9 +189,9 @@ let area = [
   //'강북구',
   //'도봉구',
   //'노원구',
-  '은평구',
-  '서대문구',
-  '마포구',
+  //'은평구',
+  //'서대문구',
+  //'마포구',
   '양천구',
   '강서구',
   '구로구',
@@ -275,7 +275,11 @@ const restaurantScrap = async (url, address) => {
   let menu = [];
   //go to each page
   let page = await browser.newPage();
-  await page.goto(url);
+  try {
+    await page.goto(url);
+  } catch (err) {
+    if (err) console.log(err);
+  }
 
   /* Restaurant Image*/
   try {
